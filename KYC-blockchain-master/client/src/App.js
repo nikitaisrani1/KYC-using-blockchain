@@ -4,7 +4,14 @@ import getWeb3 from "./getWeb3.js";
 import "./App.css";
 const crypto = require("crypto");
 
+<script src="https://cdn.jsdelivr.net/npm/web3@1.3.5/dist/web3.min.js"></script>
+
 const GetAllBankAccounts = (props) => {
+  if (typeof web3 !== 'undefined') {
+  } else {
+    console.error('Web3 is not available. Please install MetaMask or another Ethereum provider.');
+  }
+
   if (parseInt(props.bankcount) > 0) {
     return (
       <div>
@@ -109,6 +116,7 @@ class App extends Component {
         KycBlockChain.abi,
         deployedNetwork && deployedNetwork.address
       );
+      instance.options.address = deployedNetwork && deployedNetwork.address;
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
