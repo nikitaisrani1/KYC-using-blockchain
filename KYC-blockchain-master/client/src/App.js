@@ -111,7 +111,10 @@ class App extends Component {
       const accounts = await web3.eth.getAccounts();
       // Get the contract instance.
       const networkId = await web3.eth.net.getId();
-      const deployedNetwork = KycBlockChain.networks[networkId];
+      // const deployedNetwork = KycBlockChain.networks[networkId];
+      const contractAddress = "0xbf192dD7423f67c7fE3cC57E4101fF28dA3bC31e"; 
+      const deployedNetwork = { address: contractAddress };
+
       const instance = new web3.eth.Contract(
         KycBlockChain.abi,
         deployedNetwork && deployedNetwork.address
